@@ -39,6 +39,7 @@ class queue {
     public int remove(){        // take item from front of queue
         // for efficience, it needn't to move all the items in a queue whenever we deleted one 
         // instead keep all the items in the same place and move the front and rear of the queue 
+        // front can be thought as an order flag for FIFO
         int temp = queArray[front++];  // get value and incr front
         if(front == maxSize)     // deal with wraparound
             front = 0;
