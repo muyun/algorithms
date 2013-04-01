@@ -1,5 +1,5 @@
 //linkList.java
-//
+// we have to use relationships between the items to locate it in list
 class linkList
 {
     private link first;  // reference
