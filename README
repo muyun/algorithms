@@ -1,2 +1,9 @@
-code about algorithms
-code about data structure
+code about algorithms and data structure
+=========================================
+basic classes:
+--------------
+stack.java defines a stack class (Last-In-First-Out)
+queue.java defines a queue class (FIFO)
+link.java defines a link class
+linkList.java defines a linked list class, where we use relationships between the items to locate it in list
+
