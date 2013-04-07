@@ -5,16 +5,14 @@ code about Data Structure
 
 FEATURES:
 --------------
-1.stack.java defines a stack class (Last-In-First-Out)
-2.queue.java defines a queue class (FIFO)
-3.link.java defines a link class
-4.linkList.java defines a linked list class, where we use relationships between the items to locate it in list
-5.linkStack.java defines a stack class, implemented by a linked list
-
-
+1)stack.java defines a stack class (Last-In-First-Out)
+2)queue.java defines a queue class (FIFO)
+3)link.java defines a link class
+4)linkList.java defines a linked list class, where we use relationships between the items to locate it in list
+5)linkStack.java defines a stack class, implemented by a linked list
 
 HOW TO COMPILE:
-5.>javac link.java linkList.java linkStack.java linkStackApp.java
+5)>javac link.java linkList.java linkStack.java linkStackApp.java
   >java linkStackApp
 
 
