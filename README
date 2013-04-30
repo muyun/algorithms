@@ -11,6 +11,7 @@ FEATURES:
 4)linkList.java defines a linked list class, where we use relationships between the items to locate it in list
 5)firstLastList.java defines a double-ended list function, where we can insert a new item directly at the end of the list as well as the biginning
 6)linkStack.java defines a stack class, implemented by a linked list
+7)ArraySort.java defines Bubble sort, Selection Sort, and Insertion Sort functions 
 
 HOW TO COMPILE:
 6)>javac link.java linkList.java linkStack.java linkStackApp.java
