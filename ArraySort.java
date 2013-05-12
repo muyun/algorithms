@@ -7,7 +7,9 @@
 // approximately the same as the number of comparisons. However, a copy isn't as time-consuming as a swap,
 // so for random data this algorithm runs twice as fast as the bubble sort and faster than selection sort.
 
-//Insertion Sort 
+// ShellSort:  There are two many copies in Insertion Sort, ShellSort improve it through moving a smaller item
+// many spaces to the left without shifting all the intermediate items individually (bring in gap sequence)
+
 class ArraySort
 {
     private int[] a;  // ref to array a
@@ -90,6 +92,34 @@ class ArraySort
             a[in] = temp; //insert marked item
         }
     }
-    
+
+    //shellSort
+    // ShellSort move a smaller item many spaces to the left without shifting all
+    // the intermediate items individually, it makes use of interval sequence or gap sequence to achive this
+    public void ShellSort()
+    {
+        int h = 1;
+        while (h <= num/3)   
+            h = h*3 + 1;    // get gap sequence
+        
+        int in, out;
+        while(h>0)
+        {
+            for(out=h; out<num; out++)
+            {
+                int temp = a[out];
+                in = out;
+                while(in>h-1 && temp< a[in-h])
+                {
+                    a[in]=a[in-h];
+                    in=in-h;
+                }
+
+                a[in] = temp;
+            }
+            
+            h = (h-1) / 3;   / next gap
+        }
+    }
 }
 
