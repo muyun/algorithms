@@ -100,7 +100,7 @@ class ArraySort
     {
         int h = 1;
         while (h <= num/3)   
-            h = h*3 + 1;    // get gap sequence
+            h = h*3 + 1;    // get gap sequence ? Why?
         
         int in, out;
         while(h>0)
