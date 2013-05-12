@@ -1,7 +1,11 @@
 // sort.java
 // bubble sort
 //Selection Sort improves on the bubble sort by reducing the number of swaps necessary
-// from O(N*N) to O(N). Unfortunately, the number of comparisons remains O(N*N)
+// from O(N*N) to O(N). Unfortunately, the number of comparisons remains O(N*N) .
+//
+// Insertion Sort does up to max of N*(N-1)/2 times comparisons; The number of copies is
+// approximately the same as the number of comparisons. However, a copy isn't as time-consuming as a swap,
+// so for random data this algorithm runs twice as fast as the bubble sort and faster than selection sort.
 
 //Insertion Sort 
 class ArraySort
@@ -84,9 +88,7 @@ class ArraySort
             }
 
             a[in] = temp; //insert marked item
-            
         }
-        
     }
     
 }
