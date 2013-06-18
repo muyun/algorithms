@@ -5,7 +5,7 @@ code about Data Structure
 
 FEATURES:
 --------------
-1)stack.java defines a stack class (Last-In-First-Out)
+1)ResizingArrayStack.java defines a stack implementation with a resizing array
 2)queue.java defines a queue class (FIFO)
 3)link.java defines a link class
 4)linkList.java defines a linked list class, where we use relationships between the items to locate it in list
