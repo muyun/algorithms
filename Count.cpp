@@ -100,14 +100,17 @@ unsigned long long CountSplitInv(Ivec &v, Index lo, Index mid, Index hi)
 
 unsigned long long SortAndCount(Ivec &v, Index lo, Index hi)
 {
+
     if (hi <= lo)
         return 0;
+    unsigned long long x=0, y=0, z=0;
+    
     Index mid = lo + (hi - lo) / 2;
-    unsigned long long x = SortAndCount( v,  lo,  mid);
-    unsigned long long y = SortAndCount( v, mid+1, hi);
+    x = SortAndCount( v,  lo,  mid);
+    y = SortAndCount( v, mid+1, hi);
 
     //cout<<lo<<":"<<mid<<":"<<hi<<endl;
-    unsigned long long z = CountSplitInv( v, lo, mid, hi);
+    z = CountSplitInv( v, lo, mid, hi);
 
     return x + y + z;
     
