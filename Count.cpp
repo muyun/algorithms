@@ -1,3 +1,7 @@
+//This is the Programming Question1 on Algorithms: Design and Analysis on Stanford
+//Function: compute the number of inversions in the file given
+//Algorithm: fast divide-and-conquer
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -8,12 +12,10 @@
 
 using namespace std;
 
-typedef vector<int> Ivec;
-typedef vector<int>::const_iterator Iter;
-//typedef vector<int>::size_type Index;
-typedef unsigned int Index;
-
-unsigned long long cnt = 0;
+typedef vector<unsigned long long> Ivec;
+typedef vector<unsigned long long>::const_iterator Iter;
+typedef vector<int>::size_type Index;
+//typedef unsigned long long Index;
 
 /*
 int GetArray( char *file)
@@ -49,9 +51,11 @@ inline void Show(Ivec &v)
     
 }
 
-void CountSplitInv(Ivec &v, Index lo, Index mid, Index hi)
+unsigned long long CountSplitInv(Ivec &v, Index lo, Index mid, Index hi)
 {
     Ivec aux(v); //aux is a copy of v
+
+    unsigned long long count = 0;
     
     Index i = lo, j = mid + 1;
     for(Index k = lo; k <= hi; k++)
@@ -80,7 +84,7 @@ void CountSplitInv(Ivec &v, Index lo, Index mid, Index hi)
             if ( i <= mid)
             {
                 num = mid - i + 1;
-                cnt +=num;
+                count +=num;
             }
             
          }
@@ -88,36 +92,40 @@ void CountSplitInv(Ivec &v, Index lo, Index mid, Index hi)
         //cout<<"cnt:"<<cnt<<endl;
         
     }
+
+    return count;
     
 }
 
 
-int SortAndCount(Ivec &v, Index lo, Index hi)
+unsigned long long SortAndCount(Ivec &v, Index lo, Index hi)
 {
     if (hi <= lo)
         return 0;
     Index mid = lo + (hi - lo) / 2;
-    SortAndCount( v,  lo,  mid);
-    SortAndCount( v, mid+1, hi);
+    unsigned long long x = SortAndCount( v,  lo,  mid);
+    unsigned long long y = SortAndCount( v, mid+1, hi);
 
     //cout<<lo<<":"<<mid<<":"<<hi<<endl;
-    CountSplitInv( v, lo, mid, hi);
+    unsigned long long z = CountSplitInv( v, lo, mid, hi);
+
+    return x + y + z;
     
 }
 
-void Count(Ivec &v)
+/*
+unsigned long long Count(Ivec &v)
 {
-   SortAndCount(v, 0, v.size()-1);
-   //cout<<v.size()<<".."<<endl;
-      
-   //Show(v);
-   
-}
+   unsigned long long z = SortAndCount(v, 0, v.size()-1);
 
+   return z;
+}
+*/
 
 int main()
 {
-    const char Src[]="/home/zhaowenlong/workspace/class/Algorithms/Algorithms_Design_and_Analysis_Stanford/Integer";
+    /*
+    const char Src[]="/home/zhaowenlong/workspace/class/Algorithms/Algorithms_Design_and_Analysis_Stanford/Integer.bak";
     Ivec ivec; 
 
     //store the integers to array 
@@ -126,19 +134,40 @@ int main()
     while(getline(in,line))
     {
         // convert string to int
-        /*
-        stringstream ss(line);
-        int x = 0;
-        ss >> x;
-        */
+        
+       // stringstream ss(line);
+       // int x = 0;
+       // ss >> x;
+        
         unsigned long long x = atoi(line.c_str());
         
         ivec.push_back(x);
     }
- 
+    */
+
+    //Another way to open a file
+    Ivec ivec;
+
+    unsigned long long x;
+    ifstream fin("Integer");
+    if(fin.is_open()){
+        while(!fin.eof())
+        {
+            fin >> x;
+            ivec.push_back(x);
+            
+        }
+
+        fin.close();
+        
+    }
+    else{
+        cout<<"Cann't open the file"<<endl;
+    }
+    
     //Show(ivec);
  
-    Count(ivec);
+    unsigned long long cnt = SortAndCount(ivec,0,ivec.size());
     
     cout<<"cnt:"<<cnt<<endl;
     printf("cnt:%llu\n",cnt);
