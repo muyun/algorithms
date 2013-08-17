@@ -19,6 +19,7 @@ HOW TO COMPILE:
 
 
 Programming Questions on The Course "Algorithms:Design and Analysis" on Stanford
+--------------
 1)Count.cpp computes the number of inversions in the file given (based on MergeSort)
 2)ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort)
 
