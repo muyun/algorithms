@@ -12,7 +12,7 @@ FEATURES:
 5)firstLastList.java defines a double-ended list function, where we can insert a new item directly at the end of the list as well as the biginning
 6)linkStack.java defines a stack class, implemented by a linked list
 HOW TO COMPILE:
-  >javac link.java linkList.java linkStack.java linkStackApp.java
+  >javac link.java linkList.java linkStack.java test/linkStackApp.java
   >java linkStackApp
 7)ArraySort.java defines Bubble sort, Selection Sort, Insertion Sort and shellSort functions 
 8)Merge.java defines Top-down mergesort function
@@ -20,8 +20,8 @@ HOW TO COMPILE:
 
 Programming Questions on The Course "Algorithms:Design and Analysis" on Stanford
 --------------
-1)Count.cpp computes the number of inversions in the file given (based on MergeSort)
-2)ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort)
+1)app/Count.cpp computes the number of inversions in the file given (based on MergeSort)
+2)app/ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort)
 
 
 
