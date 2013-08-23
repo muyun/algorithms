@@ -2,6 +2,7 @@ DESCRIPTION:
 
 code about Algorithms
 code about Data Structure
+TODO: a toolbox for data structure and algorithms
 
 FEATURES:
 --------------
@@ -18,10 +19,12 @@ HOW TO COMPILE:
 8)Merge.java defines Top-down mergesort function
 
 
-Programming Questions on The Course "Algorithms:Design and Analysis" on Stanford
+HOMEWORK:
 --------------
-1)app/Count.cpp computes the number of inversions in the file given (based on MergeSort)
-2)app/ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort)
+Questions on The Course "Algorithms:Design and Analysis" on Stanford
+1)homework/Count.cpp computes the number of inversions in the file given (based on MergeSort)
+2)homework/ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort)
 
-
+CHALLENGE: some programming problem challenges
+--------------
 
