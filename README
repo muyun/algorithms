@@ -6,6 +6,7 @@ TODO: a toolbox for data structure and algorithms
 
 FEATURES:
 --------------
+src/datastructure:
 1)ResizingArrayStack.java defines a stack implementation with a resizing array
 2)queue.java defines a queue class (FIFO)
 3)link.java defines a link class
@@ -15,6 +16,8 @@ FEATURES:
 HOW TO COMPILE:
   >javac link.java linkList.java linkStack.java test/linkStackApp.java
   >java linkStackApp
+
+src:
 7)ArraySort.java defines Bubble sort, Selection Sort, Insertion Sort and shellSort functions 
 8)Merge.java defines Top-down mergesort function
 
