@@ -53,7 +53,7 @@ class Queue:
 
     def display(self):
         last = self.head
-        while last.next:
+        while last:
             print last.cargo,
             last = last.next
         print
@@ -62,20 +62,52 @@ class Queue:
 #in Priority queue, the item that is removed from the queue is not necessarily the first one that was added,
 #Rather, it it the item in the queue that has the highest priority,
 #And the priority depends on the comparison operators (built-in or __cmp__ method)
-class PriorityQueue:
+
+#using linked list,to keep the removal in a constant time, keep the list sorted
+class PriorityQueue(Queue):
+    def insert(self,cargo): #keep the list sorted in the insertion
+        node = Node(cargo)
+        node.next = None
+        #if the list is empty
+        if self.head == None:
+            self.head = self.last = node
+        else:
+            #find the least prioprity, keep it sorted
+            #old_cargo = self.head.cargo
+            current = self.head
+            while current:
+                #TODO: wanna to have a sorted list in insert
+                #temp = current.next #because this isnot bi-linked list, we should keep current and current.next
+                #from bigger to smaller, 4, 3, 1
+                if  cargo > current.cargo: #in the sorted list, node is put between current and current.next
+                    node.next = current.next
+                    current.next = node
+                    
+                    import pdb; pdb.set_trace()
+                    break    
+                if cargo < current.cargo:
+                    node.next = current.next #next node
+                    current.next = node
+                    current = current.next 
+                    continue
+        self.length = self.length + 1    
+        
+    #in the sorted list, removing the highest priority means removint the first node, O(1)
+
+class PriorityQueueList:
     def __init__(self):
         self.items = []
 
     def isEmpty(self):
         return self.items == []
 
-    def insert(self):
-        self.items.append(self)
+    def insert(self,item):
+        self.items.append(item)
 
     def remove(self):
         max_index = 0 # hold the index of highest priority
         for i in range(0, len(self.items)):
-            if self.items[i] > self.items[max_index] # definition
+            if self.items[i] > self.items[max_index]: # definition
                 max_index = i
         item = self.items[max_index]
         self.items.pop(max_index)
@@ -84,4 +116,15 @@ class PriorityQueue:
 
     def display(self):
         print self.items
-                            
+
+def main():
+    q = PriorityQueue()
+    q.insert(5)
+    q.insert(3)
+    q.display()
+    
+    q.insert(4)
+    q.display()
+    
+if __name__ == "__main__":
+    main()
