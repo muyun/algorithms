@@ -1,4 +1,4 @@
-# -*- coding utf8 -*-  #encoding of a python file
+# -*- coding: utf-8 -*-  #encoding of a python file
 #PostfixExpression.py: wenlong
 #Description: compute the value of the postfix [ (1+2)*3 => 1 2 + 3 * ]
 #Notes: 1) the import way  2) in Stack class, pop method should have the return function
