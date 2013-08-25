@@ -9,15 +9,17 @@ class Stack:
     def __init__(self):
         self.items = []
 
-    def Push(self, item):
+    def push(self, item):
         self.items.append(item)
 
-    def Pop(self):
-        self.items.pop() #pop the last item on this list
+    def pop(self):
+        return self.items.pop() #pop the last item on this list
 
-    def IsEmpty():
+    def isEmpty():
         return (self.items == [])
 
+    def display(self):
+        print self.items
     #if __name__ == "__main__":
     
 
