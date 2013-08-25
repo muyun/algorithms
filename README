@@ -25,8 +25,10 @@ src:
 HOMEWORK:
 --------------
 Questions on The Course "Algorithms:Design and Analysis" on Stanford
-1)homework/Count.cpp computes the number of inversions in the file given (based on MergeSort)
-2)homework/ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort)
+homework:
+1)Count.cpp computes the number of inversions in the file given (based on MergeSort)
+2)ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort)
+
 
 CHALLENGE: some programming problem challenges
 --------------
