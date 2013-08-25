@@ -73,4 +73,3 @@ class linkList
     }
     
 }// end class linkList
-
