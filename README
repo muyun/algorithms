@@ -16,10 +16,12 @@ src/datastructure:
 HOW TO COMPILE:
   >javac link.java linkList.java linkStack.java test/linkStackApp.java
   >java linkStackApp
+7)Stack.py defines a stack class
 
 src:
 7)ArraySort.java defines Bubble sort, Selection Sort, Insertion Sort and shellSort functions 
 8)Merge.java defines Top-down mergesort function
+9)PostfixExpression.py computes value of postfix, testing stack structure
 
 
 HOMEWORK:
