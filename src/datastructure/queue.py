@@ -3,7 +3,7 @@
 #description: queue: use FIFO policy, using link list structure (O(1))
 #             priority queue: use the priority queueing policy, using list structure
 #                             the priority depends on the comparison operators (using built-in or __cmp__ method)
-#
+#TODO: update PriorityQueue class based on linked list
 
 class Node:
     def __init__(self, cargo = None, next = None):
@@ -64,7 +64,7 @@ class Queue:
 #And the priority depends on the comparison operators (built-in or __cmp__ method)
 
 #using linked list,to keep the removal in a constant time, keep the list sorted
-class PriorityQueue(Queue):
+class PriorityQueue_(Queue):
     def insert(self,cargo): #keep the list sorted in the insertion
         node = Node(cargo)
         node.next = None
@@ -94,7 +94,7 @@ class PriorityQueue(Queue):
         
     #in the sorted list, removing the highest priority means removint the first node, O(1)
 
-class PriorityQueueList:
+class PriorityQueue:
     def __init__(self):
         self.items = []
 
@@ -117,6 +117,7 @@ class PriorityQueueList:
     def display(self):
         print self.items
 
+"""        
 def main():
     q = PriorityQueue()
     q.insert(5)
@@ -128,3 +129,4 @@ def main():
     
 if __name__ == "__main__":
     main()
+"""
