@@ -13,9 +13,44 @@ class Tree:
     def __str__(self):
         return str(self.cargo)
 
+    #preorder, print the root before its children
     def display(self):
         if self == None:
             return
         print self.cargo,
-        self.display(self.left)
-        self.display(self.right)
+        if self.left != None:
+            self.left.display()
+        if self.right != None:
+            self.right.display()
+
+    #postorder, print the subtrees then the root node
+    def displayPostorder(self):
+        if self == None:
+            return
+        if self.left != None:
+            self.left.displayPostorder()
+        if self.right != None:
+            self.right.displayPostorder()
+        print self.cargo,
+
+    #inorder, print the left tree, then the root and the right tree
+    def displayInorder(self):
+        if self == None:
+            return
+        if self.left != None:
+            self.left.displayInorder()
+        print self.cargo,
+        if self.right != None:
+            self.right.displayInorder()
+
+    #do an inorder traversal and keep track of what level in the tree we are on
+    def displayIndented(self,level=0):
+        if self == None:
+            return
+        if self.left != None:
+            self.left.displayIndented(level+1)
+        print '  '*level + str(self.cargo)
+        if self.right != None:
+            self.right.displayIndented(level+1)
+        
+    
