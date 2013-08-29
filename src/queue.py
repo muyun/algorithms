@@ -23,7 +23,7 @@ class Queue:
         self.head = None # reference to the first Node
         self.last = None # reference to the last Node
 
-    def isEmpty(self):
+    def empty(self):
         return (self.length == 0)
 
     #insert the Node to last position, O(1)
@@ -98,7 +98,7 @@ class PriorityQueue:
     def __init__(self):
         self.items = []
 
-    def isEmpty(self):
+    def empty(self):
         return self.items == []
 
     def insert(self,item):
