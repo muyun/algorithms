@@ -1,7 +1,6 @@
 //stack.cpp : wenlong
 //description: stack
 //reference: Algorithms in c++ by Robert Sedgewick
-#include <iostream>
 using namespace std;
 
 //based on array
