@@ -15,7 +15,7 @@ class Stack:
     def pop(self):
         return self.items.pop() #pop the last item on this list
 
-    def isEmpty():
+    def empty():
         return (self.items == [])
 
     def display(self):
