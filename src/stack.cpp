@@ -1,6 +1,7 @@
 //stack.cpp : wenlong
 //description: stack
 //reference: Algorithms in c++ by Robert Sedgewick
+#include <iostream>
 using namespace std;
 
 //based on array
@@ -15,11 +16,18 @@ public:
     }
     //STACK(const Item&);
 
-    int isEmpty() const { return N == 0; }
+    int empty() const { return N == 0; }
 
     void push(Item item) { s[N++] = item;}
     Item pop() { return s[--N];}
 
+    void display()
+    {
+        for(int i =0; i<N; i++)
+            cout<<s[i]<<" ";
+        cout<<endl;
+    }
+    
 private:
     Item *s; // s points to the array
     int N;  // index
@@ -43,7 +51,7 @@ private:
     
 public:
     LinkList(){ head = 0;}
-    int isEmpty() const { return head == 0;}
+    int empty() const { return head == 0;}
     
     //push a new item at the front of the list, head points to this item
     void push(Item x)
@@ -56,12 +64,22 @@ public:
     //pop the item at the front of the list
     Item pop()
     {
-        Item v = head->item;
+        Item x = head->item;
         link t = head->next;
         delete head;
         head = t;
 
-        return v;
+        return x;
+    }
+
+    void display()
+    {
+        while (head != 0)
+        {
+            cout<<head->item<<" ";
+            head = head->next;
+        }
+        cout<<endl;
     }
     
 };
