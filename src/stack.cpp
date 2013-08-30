@@ -27,6 +27,7 @@ public:
             cout<<s[i]<<" ";
         cout<<endl;
     }
+    ~STACK(){};
     
 private:
     Item *s; // s points to the array

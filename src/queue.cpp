@@ -52,6 +52,9 @@ public:
         }
         cout<<endl;
     }
+
+    ~QUEUE(){};
+    
 };
 
     
