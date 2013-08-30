@@ -82,6 +82,9 @@ public:
         }
         cout<<endl;
     }
+
+    ~LinkList(){};
+    
     
 };
     
