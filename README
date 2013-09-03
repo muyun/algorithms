@@ -21,11 +21,9 @@ HOW TO COMPILE:
   stack.py defines a stack class
   stack.cpp defines stack based on array and linked list
 5)tree.py defines a tree  class
-
 6)ArraySort.java defines Bubble sort, Selection Sort, Insertion Sort and shellSort functions 
 7)Merge.java defines Top-down mergesort function
 8)PostfixExpression.py computes value of postfix, using to test stack structure
-
 
 HOMEWORK:
 --------------
@@ -34,6 +32,10 @@ homework:
 1)Count.cpp computes the number of inversions in the file given (based on MergeSort idea)
 2)ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort idea)
 
+ALGORITHMS_PRINCETON:
+--------------
+Related exercises and Assignments on the Course "Algorithms" on Princeton
+1) QuickUnion.java is the Quick-Find question using Quick-Union with weighted implementation
 
 CHALLENGE: some programming problem challenges
 --------------
