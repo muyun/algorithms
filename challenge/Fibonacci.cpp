@@ -39,8 +39,8 @@ int main()
 {
     int num = 100;
     
-    cout<<fib1(num)<<endl;
+    //cout<<fib1(num)<<endl;
 
-    //cout<<fib2(num)<<endl;
+    cout<<fib2(num)<<endl;
 }
 
