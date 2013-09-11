@@ -37,6 +37,6 @@ ALGORITHMS_PRINCETON:
 Related exercises and Assignments on the Course "Algorithms" on Princeton
 1) QuickUnion.java is the Quick-Find question using Quick-Union with weighted implementation
 
-CHALLENGE: some programming problem challenges
+CHALLENGE: some challenging programming problems
 --------------
 1)Fibonacci.cpp computes the nth Fibonacci number based on different algorithms
