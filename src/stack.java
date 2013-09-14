@@ -1,4 +1,4 @@
-// ResizingArrayStack.java: wenlong
+// stack.java: wenlong
 // Desciption: grow and shrink array, don't require client to provide capacity
 // This class gives push, pop, peel and size methods
 //
@@ -19,18 +19,18 @@
 // Test:
 //  >more tobe.txt
 //  to be or not to - be - - that - - - is
-//  >java ResizingArrayStack <tobe.txt
+//  >java stack <tobe.txt
 //  to be not that or be (2 left on stack)
 //
 //import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ResizingArrayStack<Item> {
+public class STACK<Item> {
     private Item[] s; //array of items
     private int N;        // number of elements on stack
 
     // create an empty stack
-    public ResizingArrayStack(){  //constructor
+    public STACK(){  //constructor
         // make an Object array with a length of 2
         s = (Item[]) new Object[2]; 
     }
@@ -84,7 +84,7 @@ public class ResizingArrayStack<Item> {
     // Test
     public static void main(String[] args)
     {
-        ResizingArrayStack<String> s = new ResizingArrayStack<String>();
+        STACK<String> s = new STACK<String>();
         while(!StdIn.isEmpty()){
             String item = StdIn.readString();
             if(!item.equals("-"))
