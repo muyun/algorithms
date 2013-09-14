@@ -1,24 +1,38 @@
-// stack.java
-// Stack: Last-In-First-Out storage mechanism
-// The stack defines a stack class with push, pop, peel and size methods
-
+// ResizingArrayStack.java: wenlong
+// Desciption: grow and shrink array, don't require client to provide capacity
+// This class gives push, pop, peel and size methods
+//
+// Notice: too expensive for push and pop
+//         * need to copy all item to a new array
+//         * inserting first N items takes time proportional to 1+2+ ..+N ~ N2/2
+// So, ensure that array resizing happens infrequently
+//
+// Performance analysis:
+//         *Starting from an empty stack, any sequence of N push and pop operations
+//          take time proportional to N
+//         *with linked-list implementation, each operation takes constant time in the worst time
+//          Also, use extra time and space (reference) to deal with the links.
+//
+//          with resizing-array implentatin, each operation takes constant amortized time and less wasted space;
+//          probably faster implementation of each operation.   
+//
+// Test:
 //  >more tobe.txt
 //  to be or not to - be - - that - - - is
 //  >java ResizingArrayStack <tobe.txt
 //  to be not that or be (2 left on stack)
 //
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-// a promise to provide an iterator() method, as specified in the java.lang.Iterable interface
-public class ResizingArrayStack<Item> implements Iterable<Item> {
-    private Item[] stackArray; //array of items
+public class ResizingArrayStack<Item> {
+    private Item[] s; //array of items
     private int N;        // number of elements on stack
 
     // create an empty stack
     public ResizingArrayStack(){  //constructor
         // make an Object array with a length of 2
-        stackArray = (Item[]) new Object[2]; 
+        s = (Item[]) new Object[2]; 
     }
 
     public boolean isEmpty()
@@ -30,71 +44,42 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
     {
         return N;
     }
-    
+
+    //cost of inserting first N items
+    //N + (2 + 4 + 8 + ... + N) ~ 3N
     private void resize(int capacity){
         assert capacity >= N;
         Item[] temp = (Item[]) new Object[capacity];
         
         for (int i=0; i<N; i++){
-            
-             temp[i] = stackArray[i];
+             temp[i] = s[i];
         }
-        stackArray = temp;
-        
+        s = temp;
     }
     
+    // repeated doubling
+    // if array is full, create a new array of twice the size, and copy items
     public void push(Item item){
-        if(N == stackArray.length)
-            resize(2 * stackArray.length);
+        if(N == s.length)
+            resize(2 * s.length);
                 
-        stackArray[N++] = item;   // increment top and insert item
+        s[N++] = item;   // increment top and insert item
     }
     
     public Item pop() {
         if (isEmpty()) throw new NoSuchElementException("Stack underflow");
         
-        Item item = stackArray[N-1]; // access the item and decrement top
-        stackArray[N-1] = null;    // avoid loitering
-        N--;
-        // shrink size of array if necessary
-        if(N>0 && N == stackArray.length/4)
-            resize(stackArray.length/2);
+        Item item = s[--N]; // access the item and decrement top
+        s[N] = null;    // avoid loitering
+        //if we halve size of array when array is one half,
+        //like push-pop-push-pop, proportion to N, so,
+        //halve size of array when array is one-quarter full, in this way,
+        //resizing doesn't happen that often
+        if(N>0 && N == s.length/4)
+            resize(s.length/2);
 
         return item;
     }
-    
-    // implement a method iterator() that returns an object from a class
-    // that implements the Iterator interface:
-    public Iterator<Item> iterator() 
-    {
-        return new ReverseArrayIterator();
-    }
-    private class ReverseArrayIterator implements Iterator<Item> 
-    {
-        private int i;
-
-        public ReverseArrayIterator(){
-            i = N;
-        }
-
-        public boolean hasNext()
-        {
-            return i >0;
-        }
-
-        public void remove()
-        {
-            throw new UnsupportedOperationException();
-        }
-        
-        public Item next() 
-        {
-            if (!hasNext()) throw new NoSuchElementException();
-            return stackArray[--i];
-        }
-        
-    }
-
 
     // Test
     public static void main(String[] args)
