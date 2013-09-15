@@ -16,21 +16,21 @@ public interface Iterable<Item>
     
 }
 */
-public class Queue<Item> { // implement java's Iterable interface
-    private class Node<Item>
+public class Queue<Item> implements Iterable<Item> { // implement java's Iterable interface
+    private Node head;     // head of the queue
+    private Node last;      // last of the queue
+    private int N;    // number of item in queue
+
+    private class Node
     {
        private Item item;
        private Node next;
     }
-        
-    private Node head;     // head of the queue
-    private Node last;      // last of the queue
-    private int N;    // number of item in queue
     
     public Queue(){    // constructor
         head = null;
         last = null;
-        N = 0;                   
+        //N = 0;                   
     }
     
     //add the item to the queue
@@ -53,18 +53,19 @@ public class Queue<Item> { // implement java's Iterable interface
     public Item remove(){
         if(isEmpty()) throw new RuntimeException("Queue underflow");
         
-        Item x = head.item;
+        Item item = head.item;
         head = head.next;
         N--;
 
         if(isEmpty())
             last = null; //avoid loitering
 
-        return x;
+        return item;
     }
     
     public Item peek(){   //return the item least recently added to the QUEUE
         if(isEmpty()) throw new RuntimeException("Queue underflow");
+        
         return head.item;
     }
     
@@ -76,13 +77,7 @@ public class Queue<Item> { // implement java's Iterable interface
        return N;
     }
 
-    public interface Iterator<Item>
-    {
-        boolean hasNext();
-        Item next();
-    }
-
-        /*
+    /*
     // Java's java.util.Iterator interface
     public interface Iterator<Item>
     {
@@ -91,15 +86,16 @@ public class Queue<Item> { // implement java's Iterable interface
         void remove(); //optional
     }
     */
-    
-    public Iterator iterator()
+    //It's going to have a method iterator() that returns a iterator
+    //the inner class QueueIterator implements the iterator
+    public Iterator<Item> iterator()
     {
         return new QueueIterator();
     }
 
     private class QueueIterator implements Iterator<Item> 
     {
-        Node current = head;
+        private Node current = head;
         public boolean hasNext()
         {
             return current != null;
@@ -113,6 +109,12 @@ public class Queue<Item> { // implement java's Iterable interface
             current = current.next;
             return item;
         }
+
+        public void remove() 
+        {
+            throw new UnsupportedOperationException();
+        }
+        
     }
 
     // test client

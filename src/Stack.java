@@ -25,12 +25,12 @@
 //import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class STACK<Item> {
+public class Stack<Item> {
     private Item[] s; //array of items
     private int N;        // number of elements on stack
 
     // create an empty stack
-    public STACK(){  //constructor
+    public Stack(){  //constructor
         // make an Object array with a length of 2
         s = (Item[]) new Object[2]; 
     }
@@ -84,15 +84,16 @@ public class STACK<Item> {
     // Test
     public static void main(String[] args)
     {
-        STACK<String> s = new STACK<String>();
+        Stack<String> s = new Stack<String>();
         while(!StdIn.isEmpty()){
             String item = StdIn.readString();
-            if(!item.equals("-"))
-                s.push(item);
-            else if(!s.isEmpty())
-                StdOut.print(s.pop() + " ");
+            s.push(item);
         }
-        StdOut.println("(" + s.size() + " left on stack)");
+
+        while(!s.isEmpty()){
+            StdOut.print(s.pop() + " ");
+        }
+        StdOut.println();
         
     }
     
