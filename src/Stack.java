@@ -26,13 +26,13 @@
 import java.util.NoSuchElementException;
 
 public class Stack<Item> {
-    private Item[] s; //array of items
+    private Item[] a; //array of items
     private int N;        // number of elements on stack
 
     // create an empty stack
     public Stack(){  //constructor
         // make an Object array with a length of 2
-        s = (Item[]) new Object[2]; 
+        a = (Item[]) new Object[2]; 
     }
 
     public boolean isEmpty()
@@ -52,31 +52,31 @@ public class Stack<Item> {
         Item[] temp = (Item[]) new Object[capacity];
         
         for (int i=0; i<N; i++){
-             temp[i] = s[i];
+             temp[i] = a[i];
         }
-        s = temp;
+        a = temp;
     }
     
     // repeated doubling
     // if array is full, create a new array of twice the size, and copy items
     public void push(Item item){
-        if(N == s.length)
-            resize(2 * s.length);
+        if(N == a.length)
+            resize(2 * a.length);
                 
-        s[N++] = item;   // increment top and insert item
+        a[N++] = item;   // increment top and insert item
     }
     
     public Item pop() {
         if (isEmpty()) throw new NoSuchElementException("Stack underflow");
         
-        Item item = s[--N]; // access the item and decrement top
-        s[N] = null;    // avoid loitering
+        Item item = a[--N]; // access the item and decrement top
+        a[N] = null;    // avoid loitering
         //if we halve size of array when array is one half,
         //like push-pop-push-pop, proportion to N, so,
         //halve size of array when array is one-quarter full, in this way,
         //resizing doesn't happen that often
-        if(N>0 && N == s.length/4)
-            resize(s.length/2);
+        if(N>0 && N == a.length/4)
+            resize(a.length/2);
 
         return item;
     }
