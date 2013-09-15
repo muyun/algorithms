@@ -129,8 +129,16 @@ public class Queue<Item> implements Iterable<Item> { // implement java's Iterabl
         Iterator<String> i = queue.iterator();
         while(i.hasNext()){
             String s = i.next();
-            StdOut.println(s);
+            StdOut.print(s + " ");
         }
+        StdOut.println();
+
+        //simpler
+        for(String s: queue){
+            StdOut.print(s + " ");
+        }
+        StdOut.println();
+        
     }
     
 }   // end class queue
