@@ -1,4 +1,4 @@
-//DateSort.java: wenlong
+//SortDateApp.java: wenlong
 //Description: used as a client to test the sort function
 //
 //--------------------------------------------------------
@@ -10,13 +10,13 @@
      public int compareTo(Item that);
   }
 */
-public class DateSort implements Comparable<DateSort>
+public class SortDateApp implements Comparable<SortDateApp>
 {
     private final int day;
     private final int month;
     private final int year;
 
-    public DateSort(int d, int m, int y){
+    public SortDateApp(int d, int m, int y){
         day = d;
         month = m;
         year = y;
@@ -26,7 +26,7 @@ public class DateSort implements Comparable<DateSort>
     public int month() { return month; }
     public int year() { return year; }
 
-    public int compareTo(DateSort that)
+    public int compareTo(SortDateApp that)
     {
         if(this.year > that.year) return +1;
         if(this.year < that.year) return -1;
@@ -42,12 +42,12 @@ public class DateSort implements Comparable<DateSort>
     
     public static void main(String[] args)
     {
-        DateSort[] dates = new DateSort[4];
+        SortDateApp[] dates = new SortDateApp[4];
 
-        DateSort date0 = new DateSort(3,12,1983);
-        DateSort date1 = new DateSort(28,8,2012);
-        DateSort date2 = new DateSort(3,12,1982);
-        DateSort date3 = new DateSort(15,9,2013);
+        SortDateApp date0 = new SortDateApp(3,12,1983);
+        SortDateApp date1 = new SortDateApp(28,8,2012);
+        SortDateApp date2 = new SortDateApp(3,12,1982);
+        SortDateApp date3 = new SortDateApp(15,9,2013);
 
         dates[0] = date0;
         dates[1] = date1;
