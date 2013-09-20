@@ -1,4 +1,4 @@
-// Selection.java: wenlong
+// ArraySort.java: wenlong
 // Description: Selection sort
 // Assume: 1) total order (like v.compareTo(w))
 //         2)callback= reference to executable code

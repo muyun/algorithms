@@ -1,125 +1,187 @@
-// sort.java
-// bubble sort
-//Selection Sort improves on the bubble sort by reducing the number of swaps necessary
-// from O(N*N) to O(N). Unfortunately, the number of comparisons remains O(N*N) .
-//
-// Insertion Sort does up to max of N*(N-1)/2 times comparisons; The number of copies is
-// approximately the same as the number of comparisons. However, a copy isn't as time-consuming as a swap,
-// so for random data this algorithm runs twice as fast as the bubble sort and faster than selection sort.
+// ArraySort.java: wenlong
+// Description: Selection sort, Insertion sort, shell sort
+// Assume: 1) total order (like v.compareTo(w))
+//         2)callback= reference to executable code
+//              * client passes array of objects to sort() function
+//              * The sort() function calls back object's compareTo() method as needed
+//                   ---user-defined comparable types implement the comparable interface
+//---------------------------------------------------------------------------------------------------
+//import java.util.Comparator;
+/*
+  // Comparable interface built in Java
+  public interface Comparable<Item>
+  {
+     public int compareTo(Item that);
+  }
+*/
 
-// ShellSort:  There are two many copies in Insertion Sort, ShellSort improve it through moving a smaller item
-// many spaces to the left without shifting all the intermediate items individually (bring in gap sequence)
-
-class ArraySort
+//basic sort methods
+class Base 
 {
-    private int[] a;  // ref to array a
-    private int num;     // number of item
-
-    public ArraySort(int max)
+    public static boolean less(Comparable v, Comparable w)
     {
-        a = new int[max]; // create the array
-        num = 0;
+        return v.compareTo(w) < 0;
     }
 
-    public void Insert(int value) //
+    //exchange a[i] and a[j]
+    public static void swap(Comparable[] a, int i, int j)
     {
-        a[num] = value;
-        num ++;
-        
+        Comparable temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
 
-    public void Display()
+    public static void display(Comparable[] a)
     {
-        for (int i=0; i< num; i++)
-            System.out.print(a[i] + " ");
-        
-        System.out.println("");
+        for(int i=0; i<a.length; i++)
+            StdOut.print(a[i] + " ");
+        StdOut.println();
     }
 
-    //bubble sort
-    //find the remaining biggest in every loop
-    public void BubbleSort()
+    public static boolean isSorted(Comparable[] a)
     {
-        int out, in;
-        //put the smallest item at the beginning of the array(index 0)
-        // and the largest item at the end (index num-1)
-        for(out=num-1; out>1; out--) // outer loop is backward
-            for(in=0; in<out; in++) // inner loop is forward
-                if (a[in]>a[in+1])
-                    swap(a[in],a[in+1]);
+        for(int i=0; i<a.length; i++)
+            if(less(a[i],a[i-1])) //total order
+                return false;
+        return true;
     }
 
-    public void swap(int one, int two)
+}
+
+//bubble sort
+class Bubble extends Base
+{
+    public static void sort(Comparable[] a)
     {
-        int temp=one;
-        one = two ;
-        two = temp;
+        int N = a.length;
+        //find the remaining biggest in every loop
+        for(int out=N-1; out>1; out--) // outer loop is backward
+            for(int in=0; in<out; in++) // inner loop is forward
+                if ( Base.less(a[in+1],a[in]) )
+                    Base.swap(a, in, in+1);
     }
 
-    //Selection Sort
-    public void SelectionSort()
+}
+
+//Selection Sort
+//repeatedly selecting the smallest remaining item and exchange it with the corresponding entry
+
+// Performance: 1) selection Sort improves on the bubble sort by reducing the number of swaps necessary
+// from O(N*N) to O(N). Unfortunately, the number of comparisons remains O(N*N) .
+//              2) uses (N-1)+ (N-2)+ ... + 1 + 0 ~ N2/2 compares and N exchanges
+//
+//              3) Running time is insensitive to input: the process of finding the smallest item on one pass
+//                 through the array doesnot give much information about where the smallest item might be on the next pass
+//              4) Data movement is minimal: Each of the N exchanges changes the value of two array entries,
+//                 which means that the number of array accesses is a linear function of the array size N.
+// -------------------------------------------------------------------------------------------------------
+class Selection extends Base
+{
+    public static void sort(Comparable[] a)
     {
-        int out, in, min;
-        for(out=0; out<num-1; out++)
-        {
-            min = out; // find the minimum
-            for (in=out+1; in<num; in++)
-                if(a[in]<a[min])
-                    min=in;
-            swap(a[out],a[min]);
-            // less swap comparisons
+        int N = a.length;
+        for(int i=0; i<N; i++){
+            //exchange a[i] with smallest entry in a[1+1...N]
+            int min = i;
+            for(int j=i+1;j<N;j++) //assume i is the min entry
+                if(Base.less(a[j],a[min]))
+                    min = j;
+            Base.swap(a, i, min); //reduce the swap times here compared with Bubble
         }
     }
 
-    // Insertion Sort
-    // partially sorted means that they are sorted among themselves,
-    // each one is taller than the person to his left.
-    // insert the marked player in the appropriate place in the(partially) sorted group
-    public void InsertionSort()
+    //test
+    public static void main(String[] args)
     {
-        int in, out;
-        for (out=1; out<num; out++) // out marks the leftmost unsorted data
-        {
-            int temp = a[out];   // remove marked item
-            in = out;
-            while(in>0 && temp <= a[in-1])  // in starts at out and moves left
-            {                               // until either temp is smaller than the array element
-                                            // or it can't go left any further
-                a[in] = a[in-1];
-                --in;
+        String[] a = StdIn.readStrings();
+        
+        sort(a);
+        assert Base.isSorted(a);
+        Base.display(a);
+        
+    }
+    
+}
+
+//Insertion Sort
+// In iteration i, swap a[i] with each larger entry to its left,then
+// Invariants: Entries to the left are in ascending order while entries to the right have not yet been seen
+//
+// Performance: 1)for randomly ordered array of length N with distince keys, 
+//                on the average, Insertion sort uses ~N2/4 compares and ~N2/4 exchanges to sort
+//              2)For partially-sorted arrays, insertion sort runs in linear time,
+//           Number of exchanges equals the number of inversions (<=cN),
+//           Number of inversions(when array in reverse order) <= Number of compares <=( Number of inversions + (N-1)(when array in order) )
+//              3) Insertion sort ia an excellent method for partially sorted arrays and is also a fine method for tiny array
+//
+class Insertion extends Base
+{
+    public static void sort (Comparable[] a)
+    {
+        int N  = a.length;
+        for(int i=0; i<N; i++)
+            for(int j=i; j>0; j--){
+                if(Base.less(a[j], a[j-1]))
+                    //put a[i] among a[i-1], a[i-2], a[i-3] ...,
+                    //each item is immediately determined to be in its proper place in the array in each iterator i
+                    Base.swap(a, j, j-1);  
+                else
+                    break;
             }
-
-            a[in] = temp; //insert marked item
-        }
+        
     }
 
-    //shellSort
-    // ShellSort move a smaller item many spaces to the left without shifting all
-    // the intermediate items individually, it makes use of interval sequence or gap sequence to achive this
-    public void ShellSort()
+    //test
+    public static void main(String[] args)
     {
+        String[] a = StdIn.readStrings();
+
+        sort(a);
+        assert Base.isSorted(a);
+        Base.display(a);
+        
+    }
+    
+}
+
+//Shellsort
+// move entries more than one position at a time by h-sorting the array, then
+// h-sort array for descreasing sequence of values of h
+// like Insertion sort with stride length h
+//
+// The idea: h-sort the array using insertion sort
+//          if the increments are big then the size of the subarrays that we're sorting are pretty small
+//           so any sorting method is going to work well; If the increments are small because we've done previous h-sorts
+//           for bigger values of h, the array is partially sorted and so insertion sort is to be fast
+//
+// Proposition: A g-sorted array remains g-sorted after h-sorting it
+// Performance: 1) the worst-case number of compares used by shellsort with 3x+1 increments is O(N3/2)
+//              2) Accurate model has not yet been discovered
+
+class ShellSort extends Base
+{
+    public static void sort(Comparable[] a)
+    {
+        int N = a.length;
+
         int h = 1;
-        while (h <= num/3)   
-            h = h*3 + 1;    // get gap sequence ? Why?
-        
-        int in, out;
-        while(h>0)
-        {
-            for(out=h; out<num; out++)
-            {
-                int temp = a[out];
-                in = out;
-                while(in>h-1 && temp< a[in-h])
-                {
-                    a[in]=a[in-h];
-                    in=in-h;
-                }
+        while( N>3*h)     // there is ~logN/log3 h
+            h = 3*h + 1;  // 3x+1 increment sequence
 
-                a[in] = temp;
-            }
+        while(h>=1){
+            //h-sort the array using inserting sort with stride length h
+            for(int i=h; i<N; i++)
+                for(int j=i; j>=h; j-=h){
+                    if(Base.less(a[j], a[j-h]))
+                        Base.swap(a, j, j-h);
+                    else
+                        break;
+                }
             
-            h = (h-1) / 3;   / next gap
+            h = h/3;  // next
         }
+        
     }
+    
 }
 
