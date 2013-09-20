@@ -3,8 +3,6 @@
 // Compilation: javac Insertion.java
 // Execution:   java Insertion < input.txt
 
-import  java.util.Comparator;
-
 public class Insertion 
 {
     // use natural order and Comparable interface
@@ -35,11 +33,11 @@ public class Insertion
         return (v.compareTo(w) < 0);
     }
 
-    private static void exch(Object[] a, int i, int j)
+    private static void swap(Object[] a, int i, int j)
     {
-        Object swap = a[i];
+        Object temp = a[i];
         a[i] = a[j];
-        a[j] = swap;
+        a[j] = temp;
     }
 
     private static boolean isSorted(Comparable[] a)
@@ -51,7 +49,7 @@ public class Insertion
         
     }
 
-    private static void show(Comparable[] a)
+    private static void display(Comparable[] a)
     {
         for(int i = 0; i < a.length; i++)
             StdOut.println(a[i]);
@@ -60,9 +58,9 @@ public class Insertion
     public static void main(String[] args)
     {
         String[] a = StdIn.readStrings();
+        
         Insertion.sort(a);
         show(a);
-        
     }
 }
 
