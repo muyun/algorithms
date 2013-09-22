@@ -2,8 +2,6 @@
 // queue: the first item inserted is the first to be removed (FIFO)
 // This class inclues the insert, remove, peek, isEmpty and size methods
 //
-//TODO: There are still bugs
-//
 //to maintain encapsulation, don't want to reveal the internal representation of the queue (array or linked list) to the client
 import java.util.Iterator;
 import java.util.NoSuchElementException;
