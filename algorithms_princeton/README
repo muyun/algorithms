@@ -1,0 +1,10 @@
+ALGORITHMS_PRINCETON:
+--------------
+Related Exercises and Assignments in the Course "Algorithms" in Princeton
+1) QuickUnion.java is the Quick-Find question using Quick-Union with weighted implementation
+2) Assignment2: 
+   Deque.java defines a double-ended queue based on double-linked list
+   RandomizedQueue.java defines a randomized queue based on resizing Array
+   StdRandom.java is a lib of static methods to generate pseudo-random numbers from different distributions
+   Subset.java is a client program
+               
