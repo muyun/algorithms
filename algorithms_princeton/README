@@ -1,6 +1,6 @@
 ALGORITHMS_PRINCETON:
 --------------
-Related Exercises and Assignments in the Course "Algorithms" in Princeton
+Related Exercises and Assignments in the Princeton Algorithms Course 
 1) QuickUnion.java is the Quick-Find question using Quick-Union with weighted implementation
 2) Assignment2: 
    Deque.java defines a double-ended queue based on double-linked list
