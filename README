@@ -30,15 +30,16 @@ HOW TO COMPILE:
 
 HOMEWORK:
 --------------
-Questions on The Course "Algorithms:Design and Analysis" on Stanford
+Questions in The Stanford "Algorithms:Design and Analysis" Course
 homework:
 1)Count.cpp computes the number of inversions in the file given (based on MergeSort idea)
 2)ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort idea)
 
 ALGORITHMS_PRINCETON:
 --------------
-Related exercises and Assignments on the Course "Algorithms" on Princeton
-1) QuickUnion.java is the Quick-Find question using Quick-Union with weighted implementation
+>Related exercises and Assignments in the Princeton Algorithms Course
+>see the detailed ~algorithms_princeton/README
+
 
 CHALLENGE: some challenging programming problems
 --------------
