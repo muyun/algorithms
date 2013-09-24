@@ -1,18 +1,20 @@
 //Insertion.java
 
 // Compilation: javac Insertion.java
-// Execution:   java Insertion < input.txt
+// Execution:   java Insertion < tobe.txt
+//---------------------------------------------
+import java.util.Comparator;
 
 public class Insertion 
 {
-    // use natural order and Comparable interface
-    public static void sort(Comparable[] a) 
+    // use Comparator interface
+    public static void sort(Object[] a, Comparator comparator) 
     {
         int N = a.length;
         for (int i = 0; i < N; i++){
             for (int j = i; j > 0 ; j--){
-                if (less(a[j], a[j-1]))
-                    exch(a, j, j-1);
+                if (less(comparator, a[j], a[j-1]))
+                    swap(a, j, j-1);
             }
         }
 
@@ -20,17 +22,17 @@ public class Insertion
         
     }
     /*
-    // Comparable interface(built in to Java)
-    public interface Comparable<Item>
+    // Comparator interface(built in to Java): sort using an alternate order
+    public interface Comparator<Key>
     {
-        public int compareTo(Item that);
+        int compare(Key v, Key w); //compare keys v and w
         
     }
     */
 
-    private static boolean less(Comparable v, Comparable w)
+    private static boolean less(Comparator c, Object v, Object w)
     {
-        return (v.compareTo(w) < 0);
+        return c.compare(v, w) < 0;
     }
 
     private static void swap(Object[] a, int i, int j)

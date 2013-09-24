@@ -74,7 +74,7 @@ class Bubble extends Base
 //                 through the array doesnot give much information about where the smallest item might be on the next pass
 //              4) Data movement is minimal: Each of the N exchanges changes the value of two array entries,
 //                 which means that the number of array accesses is a linear function of the array size N.
-// -------------------------------------------------------------------------------------------------------
+// Selection is not stable, long-distance swap might move an item past some equal item
 class Selection extends Base
 {
     public static void sort(Comparable[] a)
@@ -114,6 +114,7 @@ class Selection extends Base
 //           Number of inversions(when array in reverse order) <= Number of compares <=( Number of inversions + (N-1)(when array in order) )
 //              3) Insertion sort ia an excellent method for partially sorted arrays and is also a fine method for tiny array
 //
+// Insertion sort is stable, because equal items never move past each other
 class Insertion extends Base
 {
     public static void sort (Comparable[] a)
@@ -157,7 +158,7 @@ class Insertion extends Base
 // Proposition: A g-sorted array remains g-sorted after h-sorting it
 // Performance: 1) the worst-case number of compares used by shellsort with 3x+1 increments is O(N3/2)
 //              2) Accurate model has not yet been discovered
-
+//Shell sort is not stable, it moves keys past other keys that could be equal
 class ShellSort extends Base
 {
     public static void sort(Comparable[] a)
