@@ -3,6 +3,7 @@
 //               heap-ordered if the key in each node >= the keys in the node's two children
 //             * heap priority queue
 //             * 
+//TODO: fix the bugs
 //
 //Performance:
 //      the heap algorithms require no more than 1 + lgN compares for insert,
