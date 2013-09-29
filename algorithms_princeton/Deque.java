@@ -5,6 +5,8 @@
 //Performance: each deque operation in constant worst-cast time
 //             use space proportional to the number of items currently in the deque
 //
+// TODO: fix some bugs
+//
 // %java Deque < tobe.txt
 // 3 1 5 4 2 6 
 // 6
