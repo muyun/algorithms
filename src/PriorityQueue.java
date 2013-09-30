@@ -2,21 +2,26 @@
 //Description: * the priority queue is maintained in a heap-ordered complete binary tree;
 //               heap-ordered if the key in each node >= the keys in the node's two children
 //             * heap priority queue
-//             * 
+//             *
 //TODO: fix the bugs
 //
 //Performance:
 //      the heap algorithms require no more than 1 + lgN compares for insert,
 //      no more than 2lgN compares(find the larger child and decide whether the child needs to be promoted) for remove the maximum
 //------------------------------------------------------------------------------------------
+import java.util.Comparator;
+//import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class PriorityQueue
+public class PriorityQueue<Key> 
 {
-    private Comparable[] pq;  //heap-ordered complete binary tree
-    private int N = 0;  //in pq[1..N] with pq[0] unused
-
-    public PriorityQueue(int max){
-        pq = new Comparable[max + 1];  //pq[0] unused
+    private Key[] pq;  //heap-ordered complete binary tree
+    private int N;  //in pq[1..N] with pq[0] unused
+    private Comparator<Key> comparator;  // optional comparator
+        
+    public PriorityQueue(){
+        pq =(Key[]) new Object[2];  //pq[0] unused
+        N = 0;
     }
 
     public boolean isEmpty()
@@ -33,20 +38,37 @@ public class PriorityQueue
     //don't involve passing the array name as a parameter
     public boolean less(int i, int j)
     {
-        return pq[i].compareTo(pq[j]) < 0;
-        
+        if(comparator == null)
+            return ((Comparable<Key>) pq[i]).compareTo(pq[j]) < 0;
+        else
+            return comparator.compare(pq[i], pq[j]) < 0;
     }
     
     public void swap(int i, int j)
     {
-        Comparable temp = pq[i];
+        Key temp = pq[i];
         pq[i] = pq[j];
         pq[j] = temp;
     }
 
-    //add the new key at the end of the array, and use swim() to restore the heap order
-    public void insert(Comparable v)
+    private void resize(int capacity)
     {
+        assert capacity >= N;
+
+        Key[] temp = (Key[]) new Object[capacity];
+        for(int i = 1; i<=N; i++)
+            temp[i] = pq[i];
+
+        pq = temp;
+    }
+        
+    //add the new key at the end of the array, and use swim() to restore the heap order
+    public void insert(Key v)
+    {
+        //double size of array
+        if(N >= pq.length - 1)
+            resize(2 * pq.length);
+                
         pq[++N] = v;  //pq[1..N]
         // swim up through the heap with the key to restore the heap condition
         swim(N);   
@@ -66,12 +88,17 @@ public class PriorityQueue
     //remove the maximum
     //take the value from pq[1], exchange the end of the heap with root
     //then decrement the size of the heap, and use sink() to restore the heap condition
-    public Comparable delMax()
+    public Key delMax()
     {
-        Comparable max = pq[1];
+        if(isEmpty()) throw new NoSuchElementException("Priority queue underflow");
+        
+        Key max = pq[1];
         swap(1, N--);    //exchange with last iem, move pq[N] to pq[1]
-        pq[N+1] = null;  //avoid loitering
         sink(1);   //sink down through the heap with the key
+        pq[N+1] = null;  //avoid loitering
+
+        if((N>0) && (N == (pq.length-1)/4)) //apart from pq[1]
+            resize(pq.length/2);
         
         return max;
     }
@@ -97,24 +124,17 @@ public class PriorityQueue
 
     public static void main(String[] args)
     {
-        //print the top M lines in the input stream
-        int M = Integer.parseInt(args[0]);
-        PriorityQueue  pq = new PriorityQueue(M);
+        PriorityQueue<String>  pq = new PriorityQueue<String>();
         
-        while(StdIn.hasNextLine()){
-            pq.insert(StdIn.readLine());
-            if(pq.size() > M)
-                pq.delMax(); //remove max if M+1 entries on the PQ
-        }// Top M entries
-
-        Stack<String> s = new Stack<String>();
-        while(!pq.isEmpty())
-            s.push(pq.delMax());
-        
-        while(!s.isEmpty()){
-            StdOut.print(s.pop() + " ");
+        while(!StdIn.isEmpty()){
+            String item = StdIn.readString();
+            if(!item.equals("-"))
+                pq.insert(item);
+            else if (!pq.isEmpty())
+                StdOut.print(pq.delMax() + " ");
         }
-        StdOut.println();
+
+        StdOut.println("(" + pq.size() + " left on pq)");
         
     }
             
