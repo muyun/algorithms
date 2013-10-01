@@ -3,7 +3,6 @@
 //               heap-ordered if the key in each node >= the keys in the node's two children
 //             * heap priority queue
 //             *
-//TODO: fix the bugs
 //
 //Performance:
 //      the heap algorithms require no more than 1 + lgN compares for insert,
@@ -19,11 +18,15 @@ public class PriorityQueue<Key>
     private int N;  //in pq[1..N] with pq[0] unused
     private Comparator<Key> comparator;  // optional comparator
         
-    public PriorityQueue(){
-        pq =(Key[]) new Object[2];  //pq[0] unused
+    public PriorityQueue(int initCapacity){
+        pq =(Key[]) new Object[initCapacity + 1];  //pq[0] unused
         N = 0;
     }
 
+    public PriorityQueue(){
+        this(1);
+    }
+    
     public boolean isEmpty()
     {
         return N == 0;
@@ -38,10 +41,11 @@ public class PriorityQueue<Key>
     //don't involve passing the array name as a parameter
     public boolean less(int i, int j)
     {
-        if(comparator == null)
+        if(comparator == null){
             return ((Comparable<Key>) pq[i]).compareTo(pq[j]) < 0;
-        else
+        }else{
             return comparator.compare(pq[i], pq[j]) < 0;
+        }
     }
     
     public void swap(int i, int j)
@@ -53,7 +57,7 @@ public class PriorityQueue<Key>
 
     private void resize(int capacity)
     {
-        assert capacity >= N;
+        assert capacity > N;
 
         Key[] temp = (Key[]) new Object[capacity];
         for(int i = 1; i<=N; i++)
@@ -76,9 +80,9 @@ public class PriorityQueue<Key>
 
     //Bottom-up reheapity(swim):if a node's key becomes larger than the node's parent's key,
     //exchange the node with its parent
-    public void  swim(int k)
+    public void swim(int k)
     {
-        while(less(k/2, k) && k > 1){
+        while(k > 1 && less(k/2, k) ){
             swap(k/2, k);
             k = k/2;
         }
@@ -107,9 +111,9 @@ public class PriorityQueue<Key>
     //exchange the node with the larger of its two children
     public void sink(int k)
     {
-        while( 2*k + 1 < N){
+        while( 2*k <= N){
             int j = 2*k;
-            if(less(j, j+1))
+            if(less(j, j+1) && j < N)
                 j++;  //very compact code to get the larger child
             
             //here j has represented the max child between left and right children
@@ -125,7 +129,7 @@ public class PriorityQueue<Key>
     public static void main(String[] args)
     {
         PriorityQueue<String>  pq = new PriorityQueue<String>();
-        
+               
         while(!StdIn.isEmpty()){
             String item = StdIn.readString();
             if(!item.equals("-"))
