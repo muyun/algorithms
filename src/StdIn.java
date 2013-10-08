@@ -293,7 +293,3 @@ public final class StdIn {
 
 }
 
-/*
-Copyright © 2000–2011, Robert Sedgewick and Kevin Wayne. 
-Last updated: Tue Sep 17 18:29:24 EDT 2013.
-*/
