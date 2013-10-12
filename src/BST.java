@@ -3,6 +3,9 @@
 //             and satisfies the tree restriction
 //            * combines the flexibility of insertion in a linked list with the efficiency of search in an ordered array
 //
+//Performance:
+//            * TODO: Insertions and serch in a BST built from N random keys require ~2lnN compares on the average
+//
 //-----------------------------------------------
 import java.util.NoSuchElementException;
 
@@ -65,9 +68,10 @@ public class BST<Key extends Comparable<Key>, value>
     //insert key-value pair into BST, if key already exists, update with new value
     public void put(Key key, Value val)
     {
-        root = put(root, key, val);
+        root = put(root, key, val);  //the root corresponds to the first partitioning item in quicksort
     }
 
+    //the subtrees are built recursively, corresponding to quicksort's recursive subarray sorts
     private Node put(Node x, Key key, Value val)
     {
         if(x == null)
@@ -75,7 +79,7 @@ public class BST<Key extends Comparable<Key>, value>
         
         int cmp = key.compareTo(x.key);
         if(cmp < 0)
-            x.left = put(x.left, key, val);  // x.left is null, after new Node, put this ref to the new node to x.left
+            x.left = put(x.left, key, val);  // x.left is null, after new Node, put this ref to the new node into x.left
         else if (cmp > 0)
             x.right = put(x.right, key, val);
         else  //cmp == 0
@@ -85,7 +89,5 @@ public class BST<Key extends Comparable<Key>, value>
 
         return x;
     }
-
-    
         
 }
