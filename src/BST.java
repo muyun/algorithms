@@ -17,7 +17,8 @@ public class BST<Key extends Comparable<Key>, value>
     private class Node{
         private Key key;   // sorted by key
         private Value val; //
-        private Node left, right;  //left and right subtrees
+        private Node left;  // the left link points to a BST for items with smaller keys
+        private Node right;  // the right link points to a BST for items with larger keys
         private int N;  //number of nodes in subtree
 
         public Node(Key key, Value val, int N)
@@ -87,7 +88,7 @@ public class BST<Key extends Comparable<Key>, value>
         
         x.N = size(x.left) + size(x.right) + 1;
 
-        return x;
+        return x; //return the root
     }
         
 }
