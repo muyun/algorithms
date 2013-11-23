@@ -4,7 +4,10 @@
 //            * combines the flexibility of insertion in a linked list with the efficiency of search in an ordered array
 //
 //Performance:
-//            * TODO: Insertions and serch in a BST built from N random keys require ~2lnN compares on the average
+//            * TODO:(done) Insertions and serch in a BST built from N random keys require ~2lnN compares on the average
+//
+//            *  BST search cost for random keys to be about 39% higher than that for binary search, the extra cost is well worthwhile,
+//            * the cost of inserting a new key is expected to be logarithmic
 //
 //-----------------------------------------------
 import java.util.NoSuchElementException;
@@ -69,6 +72,8 @@ public class BST<Key extends Comparable<Key>, value>
     //insert key-value pair into BST, if key already exists, update with new value
     public void put(Key key, Value val)
     {
+        //the node at the root of the tree corresponds to the first partitioning item in quicksort;
+        // no keys to the left are larger, and no keys to the right are smaller and the subtrees are built recursively
         root = put(root, key, val);  //the root corresponds to the first partitioning item in quicksort
     }
 
