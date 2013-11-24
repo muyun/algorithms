@@ -4,6 +4,9 @@
 //            * combines the flexibility of insertion in a linked list with the efficiency of search in an ordered array
 //
 //Performance:
+//            * all operations is h (height of BST, proportional to logN if keys inserted in random order);
+//            * but the order iteration is N
+//            *
 //            * TODO:(done) Insertions and serch in a BST built from N random keys require ~2lnN compares on the average
 //
 //            *  BST search cost for random keys to be about 39% higher than that for binary search, the extra cost is well worthwhile,
@@ -17,12 +20,12 @@ public class BST<Key extends Comparable<Key>, value>
 {
     private Node root;  // root of BST
 
-    private class Node{
+    private class Node {
         private Key key;   // sorted by key
         private Value val; //
         private Node left;  // the left link points to a BST for items with smaller keys
         private Node right;  // the right link points to a BST for items with larger keys
-        private int N;  //number of nodes in subtree
+        private int N;  //number of nodes in the subtree rooted at the node
 
         public Node(Key key, Value val, int N)
         {
@@ -95,5 +98,87 @@ public class BST<Key extends Comparable<Key>, value>
 
         return x; //return the root
     }
+
+    public Key min(){
+        return min(root).key;
+    }
+
+    private Node min(Node x){
+        if(x.left == null)
+            return x;
+
+        return min(x.left);
+    }
+    
+    //floor of key is the largest key in the BST less than or equal to key
+    public Key floor(Key key){
+        Node x = floor(root, key);
+        if(x == null)
+            return null;
+
+        return x.key;
+    }
+
+    private Node floor(Node x, Key key){
+        if(x = null)
+            return null;
         
+        int cmp = key.compareTo(x.key);
+        if(cmp == 0)
+            return x;
+        if(cmp < 0)
+            return floor(x.left, key);
+        if(cmp > 0)
+            return floor(x.right, key);
+    }
+
+    //ceiling of key is the
+
+    public int size(){
+        return size(root);
+    }
+
+    private int size(Node x){
+        if(x == null)
+            return 0;
+        return x.count;
+    }
+
+    //rank: how many keys < k ?
+    public int rank(Key key){
+        return rank(key, root);
+    }
+
+    private int rank(Key key, Node x){
+        //return num of keys less than x.key in the subtree rooted at x
+        if (x == null)
+            return 0;
+        int cmp = key.compareTo(x.key);
+        if(cmp < 0)
+            return rank(key, x.left); // the nodes on the left is less than the Node
+        else if(cmp > 0)
+            return 1 + size(x.left) + rank(key, x.right);
+        else if(cmp == 0)
+            return size(x.left);
+    }
+    
+    //Iteration operation, it base on in-order traversal
+    public Iterable<Key> keys(){
+        Queue<Key> q = new Queue<Key>();
+        inorder(root, q);
+        return q;
+    }
+
+    //Inorder traversal of a BST yields keys in ascending order
+    private void inorder(Node x, Queue<Key>  q){
+        if(x == null)
+            return;
+        //put all the keys in the data structure on the queue in their natural order
+        inorder(x.left, q); //traverse left subtree
+        q.enqueue(x.key); //enqueue the key
+        inorder(x.right, q);  //traverse right subtreex
+    }
+    
+    
+            
 }
