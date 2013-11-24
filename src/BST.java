@@ -178,7 +178,59 @@ public class BST<Key extends Comparable<Key>, value>
         q.enqueue(x.key); //enqueue the key
         inorder(x.right, q);  //traverse right subtreex
     }
-    
-    
+
+    //delete the min key
+    public void deleteMin(){
+        root = deleteMin(root);
+    }
+    private Node deleteMin(Node x){
+        //* go left until finding a node with a null left link
+        //* replace that node by its right link
+        //* update subtree counts
+        if(x.left == null)
+            return x.right;
+        
+        x.left = deleteMin(x.left);
+        x.count = 1 + size(x.left) + size(x.right);
+        
+        return x;
+    }
+
+    //Hibbard deletion
+    //disadvantage: not symmetric, the tree is becoming much less balanced than it was
+    //
+    public void delete(Key key){
+        root = delete(root, key);
+    }
+
+    private Node delete(Node x, Key key){
+        if(x == null)
+            return null;
+        int cmp = key.compareTo(x.key);
+        //serarch the key
+        if (cmp < 0)
+            x.left = delete(x.left, key);
+        else if (cmp > 0)
+            x.right = delete(x.right, key);
+        else{
+            //no right child
+            // case 0, no child
+            // case 1, only one child
+            if(x.right == null)
+                return x.left;
             
+            // have a right child
+            //case 2; have two children
+            Note t = x;
+            x = min(t.right); //find the min on the right
+            x.right = deleteMin(t.right); //delete the min on the right and replace with successor
+            x.left = t.left; //fix the links
+        }
+
+        x.count = size(x.left) + size(x.right) + 1;
+
+        return x;
+        
+    }
+        
 }
