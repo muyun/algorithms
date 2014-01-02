@@ -9,7 +9,7 @@
 //            *
 //            * TODO:(done) Insertions and serch in a BST built from N random keys require ~2lnN compares on the average
 //
-//            *  BST search cost for random keys to be about 39% higher than that for binary search, the extra cost is well worthwhile,
+//            * BST search cost for random keys to be about 39% higher than that for binary search, the extra cost is well worthwhile,
 //            * the cost of inserting a new key is expected to be logarithmic
 //
 //-----------------------------------------------
@@ -132,8 +132,8 @@ public class BST<Key extends Comparable<Key>, value>
             return floor(x.right, key);
     }
 
-    //ceiling of key is the
-
+    //ceiling of key is the smallest key in the BST greater than or equal to key
+    //
     public int size(){
         return size(root);
     }
