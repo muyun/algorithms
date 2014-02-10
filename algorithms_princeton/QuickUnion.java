@@ -1,18 +1,19 @@
+//QuickQunion.java
+//Performance: O(lgN)
+//
 public class QuickUnion{
     //static means that it only one instance of a static field exists,
     // all shared by all instances
     private static int[] id; 
-    private static int[] sz; // count number of objects in the tree rooted at i
+    private static int[] sz; // weighted parameter, count number of objects in the tree rooted at i
     
     public QuickUnion(int N){
         id = new int[N];
-
-        for (int i=0; i<N; i++)
-            id[i] = i;
-        
         sz = new int[N];
-        for(int i =0; i<N; i++)
+        for(int i =0; i<N; i++){
+            id[i] = i;
             sz[i] = 0;
+        }
     }
     
     private static int root(int i){
@@ -26,7 +27,7 @@ public class QuickUnion{
     }
     
     //link root of smaller tree to root of larger tree
-    // make the tree more flat
+    //thus, the path to root becomes shorter and make the tree more flat
     public static void union(int p, int q){
         int i = root(p);
         int j = root(q);
@@ -37,7 +38,6 @@ public class QuickUnion{
             id[j] = i;
             sz[i] += sz[j];
         }
-        
     }
     
     public static void display(){
@@ -45,6 +45,7 @@ public class QuickUnion{
             System.out.print(id[i]);
         System.out.println();
     }
+    
     //test
     public static void main(String[] args){
         QuickUnion qu = new QuickUnion(5);
