@@ -1,21 +1,22 @@
-// ArraySort.java: wenlong
-// Description: Selection sort
-// Assume: 1) total order (like v.compareTo(w))
-//         2)callback= reference to executable code
-//              * client passes array of objects to sort() function
-//              * The sort() function calls back object's compareTo() method as needed
-//                   ---user-defined comparable types implement the comparable interface
-//
-// Performance: 1) selection Sort improves on the bubble sort by reducing the number of swaps necessary
-// from O(N*N) to O(N). Unfortunately, the number of comparisons remains O(N*N) .
-//              2) uses (N-1)+ (N-2)+ ... + 1 + 0 ~ N2/2 compares and N exchanges
-//
-//              3) Running time is insensitive to input: the process of finding the smallest item on one pass
-//                 through the array doesnot give much information about where the smallest item might be on the next pass
-//              4) Data movement is minimal: Each of the N exchanges changes the value of two array entries,
-//                 which means that the number of array accesses is a linear function of the array size N.
-//
-//---------------------------------------------------------------------------------------------------
+/*
+ArraySort.java: wenlong
+Description: bubble sort, selection sort, heap sort
+Assume: 1) total order (like v.compareTo(w))
+        2) callback = reference to executable code
+              * client passes array of objects to sort() function
+              * The sort() function calls back object's compareTo() method as needed
+                   ---user-defined comparable types implement the comparable interface
+
+Performance: 1) selection Sort improves on the bubble sort by reducing the number of swaps necessary
+from O(N*N) to O(N). Unfortunately, the number of comparisons remains O(N*N) .
+             2) uses (N-1)+ (N-2)+ ... + 1 + 0 ~ N2/2 compares and N exchanges
+             3) Running time is insensitive to input: the process of finding the smallest item on one pass
+                through the array doesnot give much information about where the smallest item might be on the next pass
+             4) Data movement is minimal: Each of the N exchanges changes the value of two array entries,
+                which means that the number of array accesses is a linear function of the array size N.
+---------------------------------------------------------------------------------------------------
+*/
+
 //import java.util.Comparator;
 /*
   // Comparable interface built in Java
@@ -110,4 +111,12 @@ public class Selection
     }
     
 }
+
+class Heap 
+{
+    private Heap() { }
+    
+    
+}
+
 
