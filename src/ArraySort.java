@@ -56,7 +56,7 @@ class Bubble
 
 //Selection Sort
 //repeatedly selecting the smallest remaining item and exchange it with the corresponding entry
-public class Selection
+class Selection
 {
     public static void sort(Comparable[] a)
     {
@@ -115,7 +115,23 @@ public class Selection
 class Heap 
 {
     private Heap() { }
-    
+
+    public static void sort()
+    {
+    }
+
+    private static void sink(Comparable[] pq, int k, int N)
+    {
+        
+    }
+
+    private static boolean less()
+    {
+    }
+
+    private static void exch()
+    {
+    }
     
 }
 

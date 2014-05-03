@@ -18,6 +18,7 @@ public class Quick
 
     private static void sort(Comparable[] a, int lo, int hi)
     {
+        //TODO: for tiny subarrays, invoking insertion sort will be better
         if(hi <= lo)
             return;
         //put entry a[j] in its final place in the array for some j

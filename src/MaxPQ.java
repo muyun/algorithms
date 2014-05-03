@@ -1,15 +1,17 @@
-//MaxPQ.java
 /*
+  MaxPQ.java
   java MaxPQ < tobe1.txt
 */
-//using an iterator is to allow the client to iterate over the collection of objects
+
 /*
+using an iterator is to allow the client to iterate over the collection of objects;
 public interface Iterable<T>
 {
   Iterator<T> iterator();
 }  
 */
 import java.util.Iterator;
+
 /*
 public interface Comparator<T>
 {
@@ -24,8 +26,8 @@ public class MaxPQ<Key> implements Iterable<Key>
 {
     private Comparator<Key> comparator;  //optional Comparator
 
-    private Key[] pq; //store items at indices 1 to N
-    private int N;    //number of items on priority queue
+    private Key[] pq;   //store items at indices 1 to N
+    private int N;      //number of items on priority queue
 
     //initialize an empty priority queue with the given initial capacity
     public MaxPQ(int initCapacity){
@@ -79,7 +81,7 @@ public class MaxPQ<Key> implements Iterable<Key>
     //keep in mind that the parent of the node at position k in a heap is at position k/2
     private void swim(int k){
         while(k > 1 && less(k/2, k)){ //the node's key larger than parent's key
-            exch(k/2, k);  //exchange the node with its parent
+            exch(k/2, k);             //exchange the node with its parent
             k = k/2;
         }
     }
@@ -89,10 +91,12 @@ public class MaxPQ<Key> implements Iterable<Key>
     //the children of the node at position k in a heap are at positions 2k and 2k+1
     private void sink(int k){
         while(2*k <= N){
-            int j = 2*k;  //the children of the node
-            if (j < N && less(j, j+1)) j++; //find the smaller children
+            int j = 2*k;                //the children of the node
+            if (j < N && less(j, j+1))  //find the smaller children
+                j++;
+            
             if (!less(k, j)) break;
-            exch(k, j);  //swap the node with the smaller children
+            exch(k, j);                //swap the node with the smaller children
             k = j;
         }
     }
@@ -104,7 +108,7 @@ public class MaxPQ<Key> implements Iterable<Key>
             resize(2 * pq.length);
         
         pq[++N] = x;
-        swim(N);  //swim up through the heap
+        swim(N);       //swim up through the heap
 
         assert isMaxHeap();
     }
@@ -112,10 +116,10 @@ public class MaxPQ<Key> implements Iterable<Key>
     public Key delMax(){
         if(isEmpty()) throw new NoSuchElementException("Priority queue underflow");
 
-        Key max = pq[1]; //the largest key off the top
-        exch(1, N--); //exchange the last one with root
-        sink(1); //sink sown through the heap
-        pq[N+1] = null; //to avoid loitering and help with garbage collection
+        Key max = pq[1];   //the largest key off the top
+        exch(1, N--);      //exchange the last one with root
+        sink(1);           //sink sown through the heap
+        pq[N+1] = null;    //to avoid loitering and help with garbage collection
 
         if ((N > 0) && (N == (pq.length -1) / 4))
             resize(pq.length / 2);
@@ -182,7 +186,6 @@ private void resize(int capacity){
     pq = temp;
 }
 
-
 //1. An implementation of Iterable is one that provides an Iterator of itself
 /*
 public interface Iterable<T>
@@ -195,25 +198,28 @@ public Iterator<Key> iterator()
 {
     return new HeapIterator();
 }
-
- //An iterator is a simple way of allowing some to loop through a collection
- /*
+//An iterator is a simple way of allowing some to loop through a collection
+/*
    public interface Iterator<E>
    {
       boolean hasNext();
       E next();
       void remove();
    }
- */
+*/
 
 private class HeapIterator implements Iterator<Key>
 {
     //create a new pq
     private MaxPQ<Key> copy;
 
+    //add all items to copy of heap
     //
     public HeapIterator() {
-        
+        if (comparator == null) copy = new MaxPQ<Key>(size());
+        else   copy = new MaxPQ<Key>(size(), comparator);
+        for(int i = 1; i <= N; i++)
+            copy.insert(pq[i]);
     }
 
     public boolean hasNext() { return !copy.isEmpty(); }
