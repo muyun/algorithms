@@ -17,7 +17,10 @@ from O(N*N) to O(N). Unfortunately, the number of comparisons remains O(N*N) .
 ---------------------------------------------------------------------------------------------------
 */
 
-//import java.util.Comparator;
+import java.lang.Comparable;
+//this sorting logic must be in same class whose objects are being sorted,
+//this is called natural ordering of objects
+
 /*
   // Comparable interface built in Java
   public interface Comparable<Item>
@@ -116,23 +119,62 @@ class Heap
 {
     private Heap() { }
 
-    public static void sort()
+    public static void sort(Comparable[] a)
     {
+        int N  = a.length;
+        for(int k = N/2; k >= 1; k--)
+            sink(a, k, N);
+
+        while (N > 1){
+            swap(a, 1, N--);
+            sink(a, 1, N);
+        }
+                
     }
 
-    private static void sink(Comparable[] pq, int k, int N)
+    private static void sink(Comparable[] a, int k, int N)
     {
+        while( 2*k <= N ){ //a node's key smaller than one of the node's children's keys
+            int j = 2*k;
+            if(less(j, j+1) && j < N)
+                j++; //get the larger child
+            
+            if(!less(k, j)) //whether the child needs to be promoted
+                break;
+
+            swap(a, k, j);
+            k = j;
+        }
+    }
+
+    private static boolean less(Comparable v, Comparable w )
+    {
+        return v.compareTo(w) < 0;
+    }
+
+    private static void swap(Comparable[] a, int i, int j)
+    {
+        Comparable temp = a[i-1];
+        a[i-1] = a[j-1];
+        a[j-1] = temp;
+    }
+
+    public static void display(Comparable[] a)
+    {
+        for(int i=0; i<a.length; i++)
+            StdOut.print(a[i] + " ");
+        StdOut.println();
+    }
+
+    //test
+    public static void main(String[] args)
+    {
+        String[] pq = StdIn.readStrings();
+        display(pq);
         
+        Heap.sort(pq);
+        display(pq);
     }
-
-    private static boolean less()
-    {
-    }
-
-    private static void exch()
-    {
-    }
-    
 }
 
 
