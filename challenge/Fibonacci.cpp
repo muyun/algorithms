@@ -18,12 +18,12 @@ int fib1(int n)
 //However, Arithmetic operations on large numbers cannot possibly be performed in a single,constant-time step
 //Think of the addition of two n-bit numbers
 //So, the number of setps taken by fib2 is proportional to n*n
-int fib2(int n)
+long fib2(long n)
 {
     //when n=0
-    int i = 1;
-    int j = 0;
-    for(int k=1; k<=n; k++)
+    long i = 1;
+    long j = 0;
+    for(long k=1; k<=n; k++)
     {
         j = i + j;
         i = j - i;
@@ -32,15 +32,47 @@ int fib2(int n)
     return j;
 }
 
+int fib3(int n)
+{
+  if (n == 0)
+    return 0;
+
+  int f[n];  //store the intermediate results
+  f[0] = 0;
+  f[1] = 1;
+
+  for(int i = 2; i < n+1; i++)
+  {
+    f[i] = f[i-1] + f[i-2];
+    cout<<"i:"<<i<<"and f[i]:"<<f[i]<<endl;
+  }
+
+  /*
+    two big number addition problem
+  int a = 1134903170;
+  int b = 1836311903;
+  long int c = a + b;
+  
+  cout <<"a+b"<< c << endl;
+  */
+  return f[n];
+  
+}
+
+
 //involve matrices
 //(Fn,Fn+1) = (0 1
 
 int main()
 {
-    int num = 100;
+    long num = 49;
     
     //cout<<fib1(num)<<endl;
+    cout<<sizeof(int)<<endl;
+    
+    //cout<<fib2(num)<<endl;
+    cout <<fib3(num)<<endl;
 
-    cout<<fib2(num)<<endl;
+    return 0;
 }
 
