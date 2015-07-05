@@ -1,6 +1,10 @@
-This package is the assignments and challenges from the Algorithms in Princeton
-
-References:
-1. Algorithms book: http://algs4.cs.princeton.edu/home/
-2. Algorithms, Part I : https://class.coursera.org/algs4partI-006
- 
+ALGORITHMS_PRINCETON:
+--------------
+Related Exercises and Assignments in the Princeton Algorithms Course 
+1) QuickUnion.java is the Quick-Find question using Quick-Union with weighted implementation
+2) Assignment2: 
+   Deque.java defines a double-ended queue based on double-linked list
+   RandomizedQueue.java defines a randomized queue based on resizing Array
+   StdRandom.java is a lib of static methods to generate pseudo-random numbers from different distributions
+   Subset.java is a client program
+               
