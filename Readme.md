@@ -1,7 +1,8 @@
 DESCRIPTION:
 
-A Toolbox for Algorithms
-TODO: add graph-processing algorithms and string processing algorithms
+A Toolbox for Algorithms and Data Structure
+TODO: 
+* add graph-processing algorithms and string processing algorithms
 
 FEATURES:
 -----------------------------------------------------------------
@@ -37,6 +38,9 @@ HOW TO COMPILE:
 7)PriorityQueue.java is an implementation about priority queue,maintained in a heap-ordered complete binary tree
 
 8)Tree.py defines a tree  class
+
+9) BST.java is a binary search tree
+   BinarySearchST.java
 
 HOMEWORK:
 -----------------------------------------------------------------
