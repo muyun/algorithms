@@ -1,6 +1,5 @@
-DESCRIPTION:
+DESCRIPTION: A Toolbox for Algorithms and Data Structure
 
-A Toolbox for Algorithms and Data Structure
 * TODO: 
   - Collate the source code
   - Add graph-processing algorithms and string processing algorithms
@@ -46,13 +45,13 @@ A Toolbox for Algorithms and Data Structure
   - Tree.py defines a tree  class
 
  
+* Homework: 
+  - Questions in The Stanford "Algorithms:Design and Analysis" Course
+    + Count.cpp computes the number of inversions in the file given (based on MergeSort idea)
+    + ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort idea)
 
-* Homework: (Questions in The Stanford "Algorithms:Design and Analysis" Course)
-  - Count.cpp computes the number of inversions in the file given (based on MergeSort idea)
-  - ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort idea)
-
-* ALGORITHMS_PRINCETON:
-  - Related exercises and Assignments in the Princeton Algorithms Course
+  - ALGORITHMS_PRINCETON:
+    + Related exercises and Assignments in the Princeton Algorithms Course
 
 
 * CHALLENGE: some challenging programming problems
