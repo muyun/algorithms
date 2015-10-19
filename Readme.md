@@ -2,11 +2,9 @@ DESCRIPTION:
 
 A Toolbox for Algorithms and Data Structure
 * TODO: 
-  + Collate the source code
-  + Add graph-processing algorithms and string processing algorithms
+  - Collate the source code
+  - Add graph-processing algorithms and string processing algorithms
 
-FEATURES:
------------------------------------------------------------------
 * Fundamentals
   - Linklist
     + link.java defines a link class
@@ -49,19 +47,13 @@ FEATURES:
 
  
 
-HOMEWORK:
------------------------------------------------------------------
-Questions in The Stanford "Algorithms:Design and Analysis" Course
-homework:
-1)Count.cpp computes the number of inversions in the file given (based on MergeSort idea)
-2)ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort idea)
+* Homework: (Questions in The Stanford "Algorithms:Design and Analysis" Course)
+  - Count.cpp computes the number of inversions in the file given (based on MergeSort idea)
+  - ComputeTotalNum.cpp computes the total number of comparisons in the file given (based on QuickSort idea)
 
-ALGORITHMS_PRINCETON:
------------------------------------------------------------------
->Related exercises and Assignments in the Princeton Algorithms Course
->see the detailed ~algorithms_princeton/README
+* ALGORITHMS_PRINCETON:
+  - Related exercises and Assignments in the Princeton Algorithms Course
 
 
-CHALLENGE: some challenging programming problems
------------------------------------------------------------------
-1)Fibonacci.cpp computes the nth Fibonacci number based on different algorithms
+* CHALLENGE: some challenging programming problems
+  - Fibonacci.cpp computes the nth Fibonacci number based on different algorithms
