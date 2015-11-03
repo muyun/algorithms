@@ -56,3 +56,6 @@ DESCRIPTION: A Toolbox for Algorithms and Data Structure
 
 * CHALLENGE: some challenging programming problems
   - Fibonacci.cpp computes the nth Fibonacci number based on different algorithms
+  
+* reference
+  - [Python Algorithms] (http://top.jobbole.com/4681/)
