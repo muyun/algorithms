@@ -40,6 +40,33 @@ public class Str {
 		return map;
 	}
 	
+	//find the integer twice in the array
+	public static int FindNumber(int[] arr){
+		HashMap<Integer,Integer> map = new HashMap<Integer, Integer>();
+		
+		for(int num : arr){
+			//int i = 1;
+			if(map.containsKey(num)){
+				return num;
+				
+			}else{
+				map.put(num, num);
+			}
+		}
+		
+		return 0;
+	}
+	
+	//One integer is missing
+	public static int FindSingle(int[] arr){
+		int x = 0;
+		
+		for (int num : arr){
+			x = x ^ num;
+		}
+		
+		return x;
+	}
 	
 	// compress - 
 	public static String Compress(String str){
@@ -77,6 +104,8 @@ public class Str {
 		return sb.toString();
 	}
 	
+
+	
 	// test
 	public static void main(String args[]){
 		String[] words =  {
@@ -96,6 +125,10 @@ public class Str {
 		
 		String s = "the sky is blue";
 		System.out.println(ReverseWords(s));
+		
+		int[] arr= {1,2,4,5,6,7,8};
+		//tocheck
+		System.out.println(FindSingle(arr));
 	}
 
 }
