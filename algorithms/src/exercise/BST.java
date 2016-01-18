@@ -5,13 +5,13 @@ import java.util.Queue;
 
 //import challenge.BinTreeTraverse;
 
-class BinNode {
+class BinaryNode {
 	  int data;
-	  BinNode left;
-	  BinNode right;
+	  BinaryNode left;
+	  BinaryNode right;
 	  
 
-	public BinNode(int d){
+	public BinaryNode(int d){
 		  this.data = d;
 		  left = null;
 		  right = null;
@@ -19,21 +19,21 @@ class BinNode {
 }
 
 public class BST {
-     static BinNode root;
+     static BinaryNode root;
   
      public BST(){
     	 this.root = null;
      }
   
      void Insert(int data){
-	     BinNode node = new BinNode(data);
+    	 BinaryNode node = new BinaryNode(data);
 	     if(root == null){
 	    	 root = node;
 	    	 return;
 	     }
 	     
-	     BinNode current = root;
-	     BinNode parent = null;
+	     BinaryNode current = root;
+	     BinaryNode parent = null;
 	     
 	     while(true){
 	    	 parent = current;
@@ -57,7 +57,7 @@ public class BST {
 	   
      }
 
-     static void  Display(BinNode root){
+     static void  Display(BinaryNode root){
     	 if(root != null){
     		 Display(root.left);
     		 System.out.print(" " + root.data);
@@ -66,7 +66,7 @@ public class BST {
      }
      
  	// level order
- 	public void DisplaylayerOrder(BinNode localroot){
+ 	public void DisplaylayerOrder(BinaryNode localroot){
  		if(localroot == null){
  			return;
  		}
@@ -77,12 +77,12 @@ public class BST {
  		*/
  		
  		//use the queue here to print
- 		Queue<BinNode> queue = new LinkedList<BinNode>();
+ 		Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
  		queue.add(localroot);
  		
  		
  		while(!queue.isEmpty()){
- 			BinNode node = queue.poll();
+ 			BinaryNode node = queue.poll();
  			// visit the head
  			System.out.print(node.data +  " ");
  			
