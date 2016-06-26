@@ -60,3 +60,6 @@ DESCRIPTION: A Toolbox for Algorithms and Data Structure
 * Reference
   - [Python Algorithms] (http://top.jobbole.com/4681/)
   - [Algorithms, Part II](https://class.coursera.org/algs4partII-006)
+  - 
+  
+* MIT-license
