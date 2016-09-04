@@ -16,6 +16,8 @@
 package base;
 
 import java.util.NoSuchElementException;
+//import java.util.Queue;
+
 
 //assume that Key is an Object because we use it to invoke compareTo() or equals()
 public class BST<Key extends Comparable<Key>, Value>
@@ -27,27 +29,27 @@ public class BST<Key extends Comparable<Key>, Value>
         private Value val; //
         private Node left;  // the left link points to a BST for items with smaller keys
         private Node right;  // the right link points to a BST for items with larger keys
-        private int N;  //number of nodes in the subtree rooted at the node
+        private int count;  //number of nodes in the subtree rooted at the node
 
         public Node(Key key, Value val, int N)
         {
             this.key = key;
             this.val = val;
-            this.N = N;
+            this.count = N;
         }
         
     }
-/*
+
     public int size()
     {
         // return N;  // N is defined as a element of Node
         return size(root);
     }
-*/
+
     private int size(Node x)
     {
         if(x == null) return 0;
-        else return x.N;
+        else return x.count;
     }
 
     public boolean isEmpty()
@@ -96,7 +98,7 @@ public class BST<Key extends Comparable<Key>, Value>
         else  //cmp == 0
             x.val = val;  //reset the value
         
-        x.N = size(x.left) + size(x.right) + 1;
+        x.count = size(x.left) + size(x.right) + 1;
 
         return x; //return the root
     }
@@ -126,16 +128,19 @@ public class BST<Key extends Comparable<Key>, Value>
             return null;
         
         int cmp = key.compareTo(x.key);
-        if(cmp == 0)
+        /*if(cmp == 0)
             return x;
+        */
         if(cmp < 0)
             return floor(x.left, key);
         if(cmp > 0)
             return floor(x.right, key);
+        
+        return x; // cmp == 0;
     }
 
     //ceiling of key is the smallest key in the BST greater than or equal to key
-    //
+   /*
     public int size(){
         return size(root);
     }
@@ -145,7 +150,7 @@ public class BST<Key extends Comparable<Key>, Value>
             return 0;
         return x.count;
     }
-
+    */
     //rank: how many keys < k ?
     public int rank(Key key){
         return rank(key, root);
@@ -160,8 +165,11 @@ public class BST<Key extends Comparable<Key>, Value>
             return rank(key, x.left); // the nodes on the left is less than the Node
         else if(cmp > 0)
             return 1 + size(x.left) + rank(key, x.right);
+        /*
         else if(cmp == 0)
             return size(x.left);
+        */
+        return size(x.left); //cmp == 0
     }
     
     //Iteration operation, it base on in-order traversal
@@ -177,7 +185,7 @@ public class BST<Key extends Comparable<Key>, Value>
             return;
         //put all the keys in the data structure on the queue in their natural order
         inorder(x.left, q); //traverse left subtree
-        q.enqueue(x.key); //enqueue the key
+        q.insert(x.key); //enqueue the key
         inorder(x.right, q);  //traverse right subtreex
     }
 

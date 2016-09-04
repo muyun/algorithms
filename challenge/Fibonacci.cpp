@@ -65,10 +65,10 @@ int fib3(int n)
 
 int main()
 {
-    long num = 49;
+    long num = 11;
     
-    //cout<<fib1(num)<<endl;
-    cout<<sizeof(int)<<endl;
+    cout<<fib1(num)<<endl;
+    //cout<<sizeof(int)<<endl;
     
     //cout<<fib2(num)<<endl;
     cout <<fib3(num)<<endl;
