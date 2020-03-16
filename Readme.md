@@ -8,5 +8,6 @@
 * Fundamentals
 * Sorting
 * Searching
+* Graph
   
 ####  MIT-license
