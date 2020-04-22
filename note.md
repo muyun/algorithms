@@ -4,7 +4,8 @@
    *  
    *  to solve problems that could not otherwise be addressed
    *  for intellectual stimulation
-   *  to become a proficient programmer -> data structures and their relationships
+   *  to become a proficient programmer 
+      - data structures and their relationships
    *  computational model are replacing math models in scientific inquiry  
       - simulate what might be happening in nature in order to try to better understand it  
 
