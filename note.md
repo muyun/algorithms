@@ -1,21 +1,51 @@
 #### Why algorithms
- - Algorithms is method for **solving a problem**
- - Data Structure is method to **store information**
- -
- - to solve problems that could not otherwise be addressed
- - for intellectual stimulation
- - to become a proficient programmer -> data structures and their relationships
- - computational model are replacing math models in scientific inquiry
+   *  Algorithms is method for **solving a problem**
+   *  Data Structure is method to **store information**
+   *  
+   *  to solve problems that could not otherwise be addressed
+   *  for intellectual stimulation
+   *  to become a proficient programmer -> data structures and their relationships
+   *  computational model are replacing math models in scientific inquiry  
+      - simulate what might be happening in nature in order to try to better understand it  
 
-#### data types
+#### data types  
+   * stack  
+   * queue  
+   * bag  
+   * union-find  
+   * priority queue  
 
-#### Sorting 
 
-#### Searching
+#### Sorting  
+   * quicksort  
+   * mergesort  
+   * heapsort  
+   * radix sorts  
 
-#### Graphs
+#### Searching  
+   * BST  
+   * red-black BST  
+   * hash table  
 
-#### Strings
+#### Graphs  
+   * BFS  
+   * DFS 
+
+   * Prim  
+   * Kruskal
+   * Dijkstra  
+
+#### Strings  
+   * KMP  
+   * regular expressions  
+   * TST  
+   * Huffman  
+   * LZW  
+
+#### advanced  
+   * B-tree
+   * suffix array  
+   * maxflow  
 
 #### Context
 
